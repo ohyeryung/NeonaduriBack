@@ -41,7 +41,7 @@ public class User {
     @Column(nullable = false)
     private String nickName;
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 500)
     private String profileImgUrl;
 
 //     비밀번호 변경
@@ -66,10 +66,13 @@ public class User {
         this.profileImgUrl = profileImgUrl;
     }
 
-
     //회원 프로필 업데이트
     public void update(String profileImgUrl, String nickName){
         this.profileImgUrl=profileImgUrl;
+        this.nickName=nickName;
+    }
+    //회원 프로필이미지가 repository에  없어도 닉네임만 변경가능하게끔 하기 위함
+    public void update(String nickName){
         this.nickName=nickName;
     }
 

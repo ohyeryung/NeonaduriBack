@@ -18,8 +18,8 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 @Entity
 public class Post extends Timestamped {
     @Id
@@ -44,7 +44,7 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String location;
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 500)
     private String postImgUrl;
 
     @Column(nullable = false)
@@ -67,7 +67,7 @@ public class Post extends Timestamped {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "days")
+    @JoinColumn(name = "POST_ID")
     private List<Days> days = new ArrayList<>();
 
     public static String makeShortUUID() {

@@ -15,13 +15,16 @@ package com.sparta.neonaduriback.review.model;
 
 import com.sparta.neonaduriback.common.model.Timestamped;
 import com.sparta.neonaduriback.login.model.User;
+import com.sparta.neonaduriback.review.dto.ReviewWithdrawalDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class Review extends Timestamped {
     @Id
@@ -31,10 +34,10 @@ public class Review extends Timestamped {
     @Column(nullable = false)
     private String reviewContents;
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 500)
     private String reviewImgUrl;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_Id")
     private User user;
 

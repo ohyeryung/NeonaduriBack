@@ -75,8 +75,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // h2-console 사용에 대한 허용 (CSRF, FrameOptions 무시)
         web
                 .ignoring()
-                .antMatchers("/h2-console/**")
-                .antMatchers("/");
+                .antMatchers("/h2-console/**","/v3/api-docs","/favicon.ico",
+                        "/swagger-resources/**", "/swagger-ui/", "/webjars/**", "/swagger/**","/swagger-ui/**");
 
     }
 
@@ -174,6 +174,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 비회원도 계획 참여할 수 있도록
         skipPathList.add("GET,/plans/*");
+
+        skipPathList.add("GET,/health");
 
         FilterSkipMatcher matcher = new FilterSkipMatcher(
                 skipPathList,
